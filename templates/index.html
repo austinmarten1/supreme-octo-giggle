@@ -8,7 +8,18 @@
 </head>
 <body>
     <h1>Jordan Moment</h1>
-    <button hx-get="/meme" hx-trigger="click" hx-target="#memeContainer">Trashy</button>
+    <input type="text" name="memeInput" 
+        hx-get="/meme"
+        hx-trigger="memeContainer"
+        hx-target="#memeContainer"
+        placeholder="Enter a subreddit"
+    >
+    <button 
+        hx-get="/meme" 
+        hx-trigger="click" 
+        hx-target="#memeContainer">Trashy
+    </button>
+
     <div id="memeContainer"></div>
 </body>
 </html>
