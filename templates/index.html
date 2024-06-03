@@ -9,13 +9,13 @@
 <body>
     <h1>Jordan Moment</h1>
     <form 
-        hx-get="/meme" 
+        hx-post="/meme" 
         hx-trigger="submit" 
         hx-target="#memeContainer"
         hx-validate
         >
         <input type="text" 
-            id="memeInput" 
+            id="subredditInput" 
             name="subreddit" 
             required placeholder="Enter a subreddit">
         <button type="submit">Trashy</button>

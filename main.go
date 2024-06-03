@@ -12,7 +12,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
-	r.GET("/meme", handlers.GetMeme)
+	r.POST("/meme", handlers.GetMeme)
 
 	r.Static("/memes", "./memes")
 	r.Run(":8080")

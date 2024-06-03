@@ -15,8 +15,14 @@ type Response struct {
 	Preview   []string `json:"preview"`
 }
 
+func Index(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", nil)
+}
+
 func GetMeme(c *gin.Context) {
-	response, err := http.Get("https://meme-api.com/gimme/dankmemes")
+	redditsub := c.PostForm("subreddit")
+	queryUrl := fmt.Sprintf("https://meme-api.com/gimme/%s", redditsub)
+	response, err := http.Get(queryUrl)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -38,8 +44,12 @@ func GetMeme(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+	c.Header("HX-Redirect", "/memes/"+fileName)
+	c.Status(http.StatusOK)
 	c.JSON(http.StatusOK, gin.H{
-		"fileName": fileName,
-		"fileUrl":  fmt.Sprintf("/memes/%s", fileName),
+		"fileName":  fileName,
+		"fileUrl":   fmt.Sprintf("/memes/%s", fileName),
+		"query":     queryUrl,
+		"subreddit": redditsub,
 	})
 }
