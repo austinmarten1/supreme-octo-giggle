@@ -8,19 +8,19 @@
 </head>
 <body>
     <h1>Jordan Moment</h1>
-    <input type="text" name="memeInput" 
-        hx-get="/meme"
-        hx-trigger="memeContainer"
-        hx-target="#memeContainer"
-        placeholder="Enter a subreddit"
-    >
-    <button 
+    <form 
         hx-get="/meme" 
-        hx-trigger="click" 
-        hx-target="#memeContainer">Trashy
-    </button>
+        hx-trigger="submit" 
+        hx-target="#memeContainer"
+        hx-validate
+        >
+        <input type="text" 
+            id="memeInput" 
+            name="subreddit" 
+            required placeholder="Enter a subreddit">
+        <button type="submit">Trashy</button>
+    </form>
 
     <div id="memeContainer"></div>
 </body>
 </html>
-
