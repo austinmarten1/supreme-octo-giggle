@@ -6,9 +6,14 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
-	"strconv"
+	//"strconv"
 	"strings"
 )
+
+func randomFileName(reddit string, ext string) string {
+	random_number := rand.Intn(9999)
+	return fmt.Sprintf("meme-%s-%d.%s", reddit, random_number, ext)
+}
 
 func DownloadImg(url string, subreddit string) (string, error) {
 	fmt.Printf("Link: %s\n", url)
@@ -18,8 +23,7 @@ func DownloadImg(url string, subreddit string) (string, error) {
 	}
 	defer resp.Body.Close()
 	basePath := "memes/"
-	random_number := rand.Intn(999999)
-	fileName := "meme-" + subreddit + strconv.Itoa(random_number) + ".jpg"
+	fileName := randomFileName(subreddit, "jpg")
 	file, err := os.Create(strings.Join([]string{basePath, fileName}, "/"))
 	if err != nil {
 		return "", err

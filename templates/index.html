@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme App</title>
     <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <!-- Add Tailwind CSS via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Jordan Moment</h1>
-    <form 
-        hx-post="/meme" 
-        hx-trigger="submit" 
-        hx-target="#memeContainer"
-        hx-validate
-        >
-        <input type="text" 
-            id="subredditInput" 
-            name="subreddit" 
-            required placeholder="Enter a subreddit">
-        <button type="submit">Trashy</button>
-    </form>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold mb-4">Jordan Moment</h1>
+        <form
+            hx-post="/meme"
+            hx-trigger="submit"
+            hx-target="#memeContainer"
+            hx-validate
+            class="mb-4 p-4 bg-white rounded shadow-md"
+            >
+            <input type="text"
+                id="subredditInput"
+                name="subreddit"
+                required
+                placeholder="Enter a subreddit"
+                class="w-full p-2 mb-4 border rounded"
+            >
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Get Meme</button>
+        </form>
 
-    <div id="memeContainer"></div>
+        <div id="memeContainer" class="mt-4"></div>
+    </div>
 </body>
 </html>
