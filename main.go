@@ -13,5 +13,7 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 	r.GET("/meme", handlers.GetMeme)
+
+	r.Static("/memes", "./memes")
 	r.Run(":8080")
 }

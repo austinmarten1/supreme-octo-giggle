@@ -3,6 +3,7 @@ package handlers
 import (
 	"austinmarten1/supreme-octo-giggle/download"
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
@@ -37,6 +38,8 @@ func GetMeme(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
-	c.JSON(http.StatusOK, gin.H{"fileName": fileName})
+	c.JSON(http.StatusOK, gin.H{
+		"fileName": fileName,
+		"fileUrl":  fmt.Sprintf("/memes/%s", fileName),
+	})
 }
